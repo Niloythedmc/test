@@ -5,8 +5,6 @@
     <title>ZeroX UI</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
     <link rel="stylesheet" href="style.css">
     <style>
         * {
@@ -233,82 +231,13 @@
 <script>
   // Firebase Configuration
   const firebaseConfig = {
-    apiKey: "YOUR_FIREBASE_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-
-  // Function to check or set user data
-  async function handleUserData(user) {
-    const username = user.username;
-    const userRef = firebase.database().ref('users/' + username);
-
-    try {
-      // Check if the user exists
-      const snapshot = await userRef.get();
-
-      if (snapshot.exists()) {
-        // User exists, get data
-        const data = snapshot.val();
-        updateProfile(data);
-      } else {
-        // User does not exist, set default data
-        const defaultData = {
-          name: `${user.first_name} ${user.last_name}`.trim(),
-          balance: 20,
-          likes: 0,
-          followers: 0
-        };
-        await userRef.set(defaultData);
-        updateProfile(defaultData);
-      }
-    } catch (error) {
-      console.error("Error accessing Firebase:", error);
-    }
-  }
-
-  // Function to update profile UI
-  function updateProfile(data) {
-    document.querySelector('.profile-name').innerText = data.name;
-    document.querySelector('.Balance').innerText = `Balance: ${data.balance} $dogs`;
-    document.querySelector('.profile-stats').innerHTML = `
-      <div class="stat-item">${data.followers} Followers</div>
-      <div class="stat-item">${data.likes} Likes</div>
-    `;
-  }
-
-  // Wait for the DOM to load
-  document.addEventListener("DOMContentLoaded", () => {
-    if (window.Telegram && Telegram.WebApp) {
-      const tg = Telegram.WebApp;
-      const user = tg.initDataUnsafe.user;
-
-      if (user) {
-        handleUserData(user);
-      } else {
-        console.error("User data not available");
-      }
-    } else {
-      console.error("Telegram WebApp API is not available");
-    }
-  });
-  // Firebase Configuration
-  const firebaseConfig = {
-    apiKey: "YOUR_FIREBASE_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyDqcjZilD6TNsIBpwd0A2obdepUO9d88uY",
+    authDomain: "zerox-2c22d.firebaseapp.com",
+    databaseURL: "https://zerox-2c22d-default-rtdb.firebaseio.com",
+    projectId: "zerox-2c22d",
+    storageBucket: "zerox-2c22d.firebasestorage.app",
+    messagingSenderId: "1076284261548",
+    appId: "1:1076284261548:web:fcc52a0597b3933f1b8b09",
   };
 
   // Initialize Firebase
@@ -370,7 +299,6 @@
     }
   });
 </script>
-
 </div>
 </div>
 </body>
